@@ -1,4 +1,4 @@
-﻿# 插入 MySQL 中数据显示乱码 
+﻿# Bug：插入 MySQL 中数据显示乱码 
 
 标签（空格分隔）： bug
 
@@ -22,9 +22,7 @@
 将后台中连接数据库配置修改为：
 
 ```
-...
 spring.datasource.mysql.url=jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=utf8
-...
 ```
 
 
