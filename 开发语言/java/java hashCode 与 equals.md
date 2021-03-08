@@ -1,4 +1,4 @@
-﻿# hashCode 与 equals
+﻿# java hashCode 与 equals
 
 标签（空格分隔）： java
 
