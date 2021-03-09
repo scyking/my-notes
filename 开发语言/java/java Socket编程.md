@@ -45,7 +45,7 @@
 2. 初始化`csk_accept_queue`
 3. 将`tcp_sock`指针存放到 `listening_hash` 表
 
-- `accpet()`　　
+- `accept()`　　
 1. 调用`accept`方法
 2. 创建`socket`(创建新的准备用于连接客户端的`socket`)
 3. 创建文件描述符
