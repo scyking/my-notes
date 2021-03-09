@@ -41,21 +41,21 @@
 1. 将当前网络命名空间名和端口存到`bhash()`。
 
 - `listen()`：验证连接请求的端口是否被开启
-1. 检查侦听端口是否存在bhash中
-2. 初始化csk_accept_queue
-3. 将tcp_sock指针存放到listening_hash表
+1. 检查侦听端口是否存在`bhash`中
+2. 初始化`csk_accept_queue`
+3. 将`tcp_sock`指针存放到 `listening_hash` 表
 
 - `accpet()`　　
-1. 调用accept方法
-2. 创建socket(创建新的准备用于连接客户端的socket)
+1. 调用`accept`方法
+2. 创建`socket`(创建新的准备用于连接客户端的`socket`)
 3. 创建文件描述符
-4. 阻塞式等待(csk_accept_queue)获取sock
+4. 阻塞式等待(`csk_accept_queue`)获取`sock`
 
-    > 在listen阶段,会为侦听的sock初始化csk_accept_queue,此时这个queue为空，所以accept()方法会在此时阻塞住,直到后面有客户端成功握手后,这个queue才有sock.如果csk_accept_queue不为空,则返回一个sock.后续的逻辑如如下:
-    1. 取出sock
-    1. socket与sock互相关联
-    1. socket与文件描述符关联
-    1. 将socket返回给线程
+    > 在`listen`阶段，会为侦听的`sock`初始化`csk_accept_queue`，此时这个`queue`为空，所以`accept()`方法会在此时阻塞住，直到后面有客户端成功握手后，这个`queue`才有`sock`。如果`csk_accept_queue`不为空，则返回一个`sock`。后续的逻辑如如下:
+    1. 取出`sock`
+    1. `socket`与`sock`互相关联
+    1. `socket`与文件描述符关联
+    1. 将`socket`返回给线程
 
 <img src="https://github.com/scyking/my-pics/blob/master/md/java-socket/java-socket-2.png" width="50%">
 
