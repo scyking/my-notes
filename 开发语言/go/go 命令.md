@@ -91,3 +91,13 @@ Use "go help <command>" for more information about a command.
     |`Errorf`	|格式化打印错误日志，同时结束测试
     |`Fatal`	|打印致命日志，同时结束测试
     |`Fatalf`	|格式化打印致命日志，同时结束测试
+    
+### go mod
+
+- `go mod help` 查看帮助
+- `go mod init<项目模块名称>` 初始化模块，会在项目根目录下生成 go.mod 文件
+- `go mod tidy` 根据 `go.mod` 文件来处理依赖关系
+- `go mod vendor` 将依赖包复制到项目下的 vendor 目录。建议一些使用了被墙包的话可以这么处理，方便用户快速使用命令 `go build -mod=vendor` 编译
+- `go list -m all` 显示依赖关系。
+- `go list -m -json all` 显示详细依赖关系。
+- `go mod download` 下载依赖。参数是非必写的，`path` 是包的路径，`version` 是包的版本。
