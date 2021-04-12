@@ -1,17 +1,12 @@
-﻿# windows 上通过docker部署kafka
+﻿# kafka 部署
 
 标签：docker kafka zookeeper 
 
 ---
 
-windows系统上直接安装kafka比较繁琐，因此使用docker。
+## 通过Docker部署
 
-### 准备
-
-- 已安装DockerToolBox
-- 已创建docker虚机
-
-### 部署kafka
+### 部署过程
 
 1. 安装zookeeper
 - 拉取镜像`docker pull wurstmeister/zookeeper`
