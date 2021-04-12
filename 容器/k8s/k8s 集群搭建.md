@@ -1,4 +1,4 @@
-﻿# 搭建k8s集群
+﻿# k8s 集群搭建
 
 标签（空格分隔）： k8s
 
@@ -72,40 +72,40 @@ $ kubeadm join <Master节点的IP和端口 >
 
   # kubeadm 以后将会在 /etc 路径下生成配置文件和证书文件
   [root@k8s-master etc]# tree kubernetes/
-kubernetes/
-├── admin.conf
-├── controller-manager.conf
-├── kubelet.conf
-├── manifests
-│   ├── etcd.yaml
-│   ├── kube-apiserver.yaml
-│   ├── kube-controller-manager.yaml
-│   └── kube-scheduler.yaml
-├── pki
-│   ├── apiserver.crt
-│   ├── apiserver-etcd-client.crt
-│   ├── apiserver-etcd-client.key
-│   ├── apiserver.key
-│   ├── apiserver-kubelet-client.crt
-│   ├── apiserver-kubelet-client.key
-│   ├── ca.crt
-│   ├── ca.key
-│   ├── etcd
-│   │   ├── ca.crt
-│   │   ├── ca.key
-│   │   ├── healthcheck-client.crt
-│   │   ├── healthcheck-client.key
-│   │   ├── peer.crt
-│   │   ├── peer.key
-│   │   ├── server.crt
-│   │   └── server.key
-│   ├── front-proxy-ca.crt
-│   ├── front-proxy-ca.key
-│   ├── front-proxy-client.crt
-│   ├── front-proxy-client.key
-│   ├── sa.key
-│   └── sa.pub
-└── scheduler.conf
+    kubernetes/
+    ├── admin.conf
+    ├── controller-manager.conf
+    ├── kubelet.conf
+    ├── manifests
+    │   ├── etcd.yaml
+    │   ├── kube-apiserver.yaml
+    │   ├── kube-controller-manager.yaml
+    │   └── kube-scheduler.yaml
+    ├── pki
+    │   ├── apiserver.crt
+    │   ├── apiserver-etcd-client.crt
+    │   ├── apiserver-etcd-client.key
+    │   ├── apiserver.key
+    │   ├── apiserver-kubelet-client.crt
+    │   ├── apiserver-kubelet-client.key
+    │   ├── ca.crt
+    │   ├── ca.key
+    │   ├── etcd
+    │   │   ├── ca.crt
+    │   │   ├── ca.key
+    │   │   ├── healthcheck-client.crt
+    │   │   ├── healthcheck-client.key
+    │   │   ├── peer.crt
+    │   │   ├── peer.key
+    │   │   ├── server.crt
+    │   │   └── server.key
+    │   ├── front-proxy-ca.crt
+    │   ├── front-proxy-ca.key
+    │   ├── front-proxy-client.crt
+    │   ├── front-proxy-client.key
+    │   ├── sa.key
+    │   └── sa.pub
+    └── scheduler.conf
     ```
     
 ### master节点token
