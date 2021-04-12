@@ -6,7 +6,12 @@
 
 [toc]
 
+## MySQL数据显示乱码
+解决：修改后台中连接数据库配置。
 
+```
+spring.datasource.mysql.url=jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=utf8
+```
 
 ## MongoDB关联查询失效
 原因：`ObjectId` 不能同 `String` 进行匹配，字段类型不同，匹配会失败。
