@@ -131,8 +131,74 @@ PS:`$http_referer` ，表⽰当前请求上⼀次⻚⾯访问的地址。
 1. 正向代理，代理的对象是客户端
 2. 反向代理，代理的对象是服务端
 
-## Nginx常见错误码
+## 常见问题
+
+### 常见错误码
 
 - 413，上传文件过大
 - 503，后端服务无响应
 - 504，后端服务执行超时
+
+### 同server_name多个虚拟主机优先级
+> 优先选择最新读取到的配置⽂件，当多个⽂件是通过include时，⽂件排序越靠前，越早被读取。
+
+### location匹配优先级
+
+```
+=       # 进行普通字符精确匹配，完全匹配
+^~      # 进行普通字符匹配，当前表示前缀匹配
+~\~*    # 表示执行一个正则匹配()
+
+#当程序使用精确匹配时，一但匹配成功，将停止其他匹配
+#当正则匹配成功时，会继续接下来的匹配，寻找是否还有更精准的匹配
+```
+
+### try_files的使用
+
+> 按顺序检查文件是否存在。
+
+```
+location / {
+    try_files $uri $uri/ /index.php;
+}
+#先查找$uri下是否有文件存在，若存在直接返回给用户
+#若$url下没有文件存在，再次访问$uri/的路径是否有文件存在
+#还是没有文件存在，交给index.php处理
+例：
+location / {
+    root /test/index.html
+    try_files $uri @test
+}
+location @test {
+    proxy_pass http://127.0.0.1：9090;
+}
+#访问 / 时，查看 /test/index.html 文件是否存在
+#若不存在，让9090端口的程序去处理这个请求
+```
+
+### `alias`和`root`区别
+
+```
+location /request_path/image/ {
+    root /local_path/image/;
+}
+#当我们访问 http://xxx.com/request_path/image/cat.png时
+#将访问 http://xxx.com/request_path/image/local_path/image/cat.png 下的文件
+
+location /request_path/image/ {
+    alias /local_path/image/;
+}
+#当我们访问 http://xxx.com/request_path/image/cat.png时
+#将访问 http://xxx.com/local_path/image/cat.png 下的文件
+```
+
+### 获取用户真实IP
+
+> 当一个请求通过多个代理服务器时，用户的ip将会被代理服务器IP覆盖。
+
+```
+#在第一个代理服务器中设置
+set x_real_ip=$remote_addr
+#最后一个代理服务器中获取
+$x_real_ip=IP1
+```
