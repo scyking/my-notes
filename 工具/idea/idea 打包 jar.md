@@ -1,4 +1,4 @@
-﻿# 使用 idea 打包 jar
+﻿# idea 打包 jar
 
 标签（空格分隔）： idea maven
 
