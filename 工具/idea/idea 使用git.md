@@ -1,4 +1,4 @@
-﻿# IDEA 上应用 Git 整理
+﻿# idea 使用git
 
 标签：idea git
 
