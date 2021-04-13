@@ -15,16 +15,18 @@
 
 ## 数据类型
 
-- ObjectId：document自生成_id
-- String：字符串，必须是utf-8
-- Boolean：布尔值，true或者false（首字母小写）
-- Integer：整数
-- Arrays：数组或者列表
-- Object：字典
-- Null：空数据类型（None Null）
-- Timestamp：时间戳
-- Date：日期（优先使用时间戳，更强大）
-- Double：浮点数（没有float）
+|类型|说明|
+|---|---|
+|ObjectId|document自生成_id
+|String|字符串，必须是utf-8
+|Boolean|布尔值，true或者false（首字母小写）
+|Integer|整数
+|Arrays|数组或者列表
+|Object|字典
+|Null|空数据类型（None Null）
+|Timestamp|时间戳
+|Date|日期（优先使用时间戳，更强大）
+|Double|浮点数（没有float）
 
 ## 关联查询
 
