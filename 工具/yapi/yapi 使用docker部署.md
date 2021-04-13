@@ -1,4 +1,4 @@
-﻿# 使用Docker快速部署Yapi
+﻿# yapi 使用docker部署
 
 标签（空格分隔）： yapi docker
 
