@@ -1,4 +1,4 @@
-﻿# spring cloud 集群配置
+﻿# SpringCloud 集群配置
 
 标签（空格分隔）： spring-cloud
 
