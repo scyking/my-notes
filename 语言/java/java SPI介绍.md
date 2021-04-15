@@ -1,6 +1,6 @@
-﻿# SPI 介绍
+﻿# java SPI介绍
 
-标签（空格分隔）： spring-boot java
+标签（空格分隔）：java
 
 ---
 
@@ -17,7 +17,7 @@
 ## java 类加载机制
 > java中的类加载器负载加载来自文件系统、网络或者其他来源的类文件。jvm的类加载器默认使用的是双亲委派模式。
 
-1. 类加载器
+### 类加载器
 - `BootstrapClassLoader`（启动类加载器）
 `c++`编写，加载`java`核心库`java.*`,构造`ExtClassLoader`和`AppClassLoader`。负责加载JDK自带的`rt.jar`包中的类文件，是所有类加载的父类。
 
@@ -31,7 +31,7 @@
 - `CustomClassLoader`（用户自定义类加载器）
 `java`编写,用户自定义的类加载器,可加载指定路径的`class`文件
 
-1. 双亲委派模式
+### 双亲委派模式
 - 原理
 当一个类加载器收到类加载任务时，会先交给自己的父加载器去完成，因此最终加载任务都会传递到最顶层的BootstrapClassLoader，只有当父加载器无法完成加载任务时，才会尝试自己来加载。
 
@@ -68,11 +68,11 @@
 - 缺陷
 在双亲委派模型中，子类加载器可以使用父类加载器已经加载的类，而父类加载器无法使用子类加载器已经加载的。这就导致了双亲委派模型并不能解决所有的类加载器问题。
 
-1. 使用线程上下文类加载器(ContextClassLoader)加载
+### 使用线程上下文类加载器(ContextClassLoader)加载
 - 如果不做任何的设置，Java应用的线程的上下文类加载器默认就是AppClassLoader。在核心类库使用SPI接口时，传递的类加载器使用线程上下文类加载器，就可以成功的加载到SPI实现的类。线程上下文类加载器在很多SPI的实现中都会用到。
 - 通常我们可以通过`Thread.currentThread().getClassLoader()`和`Thread.currentThread().getContextClassLoader()`获取线程上下文类加载器。
 
-1. 使用类加载器加载资源文件，比如jar包
+### 使用类加载器加载资源文件，比如jar包
 
 - 类加载器除了加载class外，还有一个非常重要功能，就是加载资源，它可以从jar包中读取任何资源文件。比如，`ClassLoader.getResources(String name)`方法就是用于读取jar包中的资源文件
 
