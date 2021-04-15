@@ -1,4 +1,4 @@
-# java servlet 生命周期
+# Servlet 生命周期
 
 标签（空格分隔）： java-servlet
 

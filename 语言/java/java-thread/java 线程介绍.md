@@ -1,4 +1,4 @@
-﻿# JAVA 线程
+﻿# java 线程介绍
 
 标签（空格分隔）： java-thread
 
