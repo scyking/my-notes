@@ -1,4 +1,4 @@
-﻿# springboot 远程调试配置
+﻿# idea 远程调试配置
 
 标签（空格分隔）： idea
 
@@ -32,8 +32,7 @@
 
 ## 添加 IDEA 配置
 
-添加`remote`配置：
-<https://www.cnblogs.com/tadage/p/7314595.html>
+<img src="https://github.com/scyking/my-pics/blob/master/md/idea/202141516294681.png" width="50%">
 
 ## 启动步骤
 
@@ -45,7 +44,3 @@ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8018,suspend=n -jar 
 ```
 
 PS:`address`配置值需与maven中配置保持一致,且不与其他服务冲突，建议服务端口号-1000取值。
-
-
-
-
