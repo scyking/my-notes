@@ -8,7 +8,7 @@
 
 ## 常用命令关系
 
-<img src="https://github.com/scyking/my-pics/blob/master/md/git/20214810163281.png" width="50%">
+<img src="/md/git/20214810163281.png" width="50%" alt="命令关系图">
 
 ## 常用命令整理
 #### 创建版本库
