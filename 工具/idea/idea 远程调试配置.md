@@ -32,7 +32,7 @@
 
 ## 添加 IDEA 配置
 
-<img src="https://github.com/scyking/my-pics/blob/master/md/idea/202141516294681.png" width="50%">
+<img src="/md/idea/202141516294681.png" width="50%" alt="配置示例">
 
 ## 启动步骤
 
