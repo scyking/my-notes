@@ -28,7 +28,7 @@
 
 ### 线程状态转换
 
-<img src="https://github.com/scyking/my-pics/blob/master/md/java-thread/202141515482081.png" width="50%">
+<img src="/md/java-thread/202141515482081.png" width="50%" alt="线程状态转换">
 
 ### 线程状态
 
