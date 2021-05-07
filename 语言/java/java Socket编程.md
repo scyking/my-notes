@@ -27,7 +27,7 @@
 1. 连接建立，开始通信
 1. 通信完成，关闭连接
 
-<img src="https://github.com/scyking/my-pics/blob/master/md/java-socket/java-socket-1.png" width="50%">
+<img src="/md/java-socket/java-socket-1.png" width="50%" alt="通信过程">
 
 ### java 调用底层Linux Socket接口实现
 > 创建一个TCP连接时，需要首先实例化`java`的`ServerSocket`类，其中封装了底层的`socket（）`方法、`bind()`方法、`listen（）`方法。
@@ -57,7 +57,7 @@
     1. `socket`与文件描述符关联
     1. 将`socket`返回给线程
 
-<img src="https://github.com/scyking/my-pics/blob/master/md/java-socket/java-socket-2.png" width="50%">
+<img src="/md/java-socket/java-socket-2.png" width="50%" alt="底层接口实现">
 
 ### java 使用套接字建立TCP连接过程
 1. 服务器实例化一个 `ServerSocket` 对象，表示通过服务器上的端口通信。
