@@ -7,6 +7,7 @@
 [toc]
 
 ## 简介
+
 > 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。
 
 1. Git 与 SVN 区别
@@ -46,43 +47,53 @@
     - 生成SSH秘钥对
 
         打开 Git Bash 工具，输入如下命令：
-    
-        ```
+
+        ```bash
         ssh-keygen -t rsa -C "邮箱地址"
         ```
+
         按提示完成SSH秘钥对生成。
-    
+
     - 登录 github ， 添加 SSH keys
-        - 依次点击 Settings --> SSH and GPG keys --> New SSH key 
+        - 依次点击 Settings --> SSH and GPG keys --> New SSH key
         - 添加上面生成的秘钥（.pub结尾文件）内容
 
 1. 全局用户名及邮箱配置
+
+    ```bash
+    git config --global user.name "用户名"
     
+    git config --global user.email "邮箱地址"
     ```
-    $ git config --global user.name "用户名"
-    
-    $ git config --global user.email "邮箱地址"
-    ```
+
     PS:全局配置信息也可在 `.gitconfig` 文件中查看及修改。
 
 1. 查看已有配置信息
-    
-    ```
+
+    ```bash
     git config --list
     ```
 
 ## 解决github访问缓慢
+
 > 配置系统host文件。
 
 1. 配置 [github.com](https://github.com.ipaddress.com/)
+1. 配置 [assets-cdn.github.com](https://github.com.ipaddress.com/assets-cdn.github.com)
 1. 配置 [github.global.ssl.fastly.net](https://fastly.net.ipaddress.com/github.global.ssl.fastly.net#ipinfo)
-1. cmd 下执行 `ipconfig /flushdns`（win10）
+1. cmd 下刷新系统DNS缓存，执行 `ipconfig /flushdns`（win10）
 
 示例：
+
+```hosts
+# fix git clone github project failed 
+140.82.113.3 github.com
+140.82.112.3 github.com
+
+185.199.108.153 assets-cdn.github.com
+185.199.109.153 assets-cdn.github.com
+185.199.110.153 assets-cdn.github.com
+185.199.111.153 assets-cdn.github.com
+
+199.232.69.194 github.global.ssl.fastly.net
 ```
-192.30.253.112 github.com 
-199.232.5.194 github.global.ssl.fastly.net
-```
-
-
-
