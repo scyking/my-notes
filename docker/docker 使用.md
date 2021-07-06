@@ -87,6 +87,87 @@ mounting failed with the error: Protocol error
 ```
 解决：`<本地目录>`,` <虚拟机目录>`名称不要相同
 
+## Linux 上使用 docker
+
+### 安装 docker
+
+- 查看是否已安装docker
+
+    ```
+    yum list installed | grep docker
+    ```
+    
+- 卸载旧版本docker
+
+    ```
+    yum remove docker
+    ```
+    
+- 配置国内源
+
+    ```
+    yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+    ```
+    
+- 安装docker
+    
+    ```
+    yum install -y docker-ce docker-ce-cli  containerd.io --nobest
+    ```
+
+- 查看docker版本
+
+    ```
+    # 简单信息
+    docker -v
+    # 查看docker的版本号，包括客户端、服务端、依赖的Go等
+    docker version
+    # 查看系统(docker)层面信息，包括管理的images, containers数等
+    docker info
+    ```
+    
+- 服务相关
+
+    ```
+    # 启动
+    systemctl start docker
+    # 开机自启
+    systemctl enable docker
+    # 停止
+    systemctl stop docker
+    # 重启
+    systemctl restart docker
+    # 查看docker状态
+    systemctl status docker
+    ```
+
+### 安装docker compose
+
+- 更新curl
+
+    ```
+    yum update curl
+    ```
+    
+- 下载
+
+    ```
+    curl -L https://github.com/docker/compose/releases/download/1.29.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    ```
+    
+- 安装
+
+    ```
+    chmod +x /usr/local/bin/docker-compose
+    ```
+
+- 查看版本
+
+    ```
+    docker-compose version
+    ```
+
+
 ## dockerfile 指令
 
 |指令|说明|
@@ -107,3 +188,30 @@ mounting failed with the error: Protocol error
 |ARG|设置编译镜像时加入的参数
 |ONBUILD|设置镜像的ONBUILD指令
 |STOPSIGNAL|设置容器的退出信号量
+
+
+## 网络相关
+
+> 容器可以比拟做一个独立的系统环境,能配置自己网络,所以说容器里的localhost不一定等于宿主机的localhost。
+
+### 网络模式
+
+- `bridge`：桥接docker（默认创建时，不指定网络驱动，将使用bridge模式）
+- `none`：不配置网络
+- `host`：和宿主机共享网络
+    > 例如:当你在容器上使用80端口访问其他应用,使用的是宿主机的80端口.
+- `container`：容器网络连通（用的少，局限很大）
+
+### 命令
+
+```
+# 查看docker下网络列表
+docker network ls
+# 查看单个网络详细信息
+docker network inspect networkname
+# 创建网络
+# 不指定网络驱动时,默认创建的是bridge网络.
+docker network create networkname
+# 删除网络
+docker network rm networkname
+```
