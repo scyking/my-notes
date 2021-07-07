@@ -1,17 +1,10 @@
-﻿# Bug 记录汇总
+﻿# Bug 记录
 
 标签（空格分隔）： bug
 
----
-
 [toc]
 
-## MySQL数据显示乱码
-解决：修改后台中连接数据库配置。
-
-```
-spring.datasource.mysql.url=jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=utf8
-```
+---
 
 ## MongoDB关联查询失效
 原因：`ObjectId` 不能同 `String` 进行匹配，字段类型不同，匹配会失败。
@@ -121,3 +114,65 @@ Map<String, Boolean> map = new HashMap<String, Boolean>();
 Boolean b = (map != null ? map.get("test") : Boolean.FALSE);
 ```
 PS:(JDK8)中处理方式不同，不会引起NPE。
+
+## linux执行sh报错：$’\r’: 未找到命令的解决
+> 其他正常脚本，执行报错，也可能是格式问题。
+
+原因：sh文件直接从windows复制过来导致的。
+
+解决：
+
+```
+# 安装 dos2unix
+yum install dos2unix
+# 进行格式转换
+dos2unix **.sh 
+```
+
+## linux没有那个文件或目录
+
+问题描述：
+文件存在，却提示没有那个文件或目录。
+
+原因：
+文件类型是dos。
+
+解决：
+使用dos2unix工具进行转换。
+
+## apt-get update 过期
+
+错误信息：
+```
+E: Release file for http://ftp.at.debian.org/debian-backports/dists/squeeze-backports/Release is expired (invalid since 1d 4h 40min 18s). Updates for this repository will not be applied.
+```
+
+错误原因：
+系统时间与实际不一致。
+
+解决办法：
+同步本地时间。
+
+## VirtualBox 中 centos7 下 ping 命令出现 Network is unreachable 问题的解决方法
+
+错误原因：
+IP 地址和网关配置不正确。查看命令如下：
+
+```
+# 查看 enp0s3 的有线网络配置
+nmcli connection show enp0s3
+```
+
+解决办法：
+
+1. 网络模式设置为桥接网络
+2. 执行如下命令：
+
+```
+# 设置 centos7 虚拟机的网络获取方式为自动获取 IP
+nmcli connection modify enp0s3 \
+connection.autoconnect yes \
+ipv4.method auto
+# 生效配置
+nmcli connection up enp0s3
+```
