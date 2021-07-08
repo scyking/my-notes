@@ -10,14 +10,14 @@
 
 ### 创建目录
 
-```
+```bash
 mkdir /usr/local/docker
 cd /usr/local/docker
 ```
 
 ### 编辑 `docker-compose.yml`
 
-```
+```yml
 version: "3.7"
 services:
   registry:
@@ -32,7 +32,7 @@ services:
 
 ### 启动容器
 
-```
+```bash
 docker-compose up -d
 ```
 
@@ -46,7 +46,7 @@ docker-compose up -d
 
 > 命名方式：`ip:port/image_name:version`
 
-```
+```bash
 ## 拉取镜像
 docker pull ubuntu
 ## 打标
@@ -55,7 +55,7 @@ docker tag ubuntu 127.0.0.1:5000/ubuntu
 
 ### 配置镜像服务器地址
 
-```
+```bash
 vi /etc/docker/daemon.json
 
 ## 内容如下：
@@ -79,21 +79,22 @@ docker info
 
 ### 推送镜像
 
-```
+```bash
 docker push 127.0.0.1:5000/ubuntu
 ```
 
 ### 查看镜像
 
-```
+```bash
 ## 浏览器查看
 http://127.0.0.1:5000/v2/_catalog
 ## 终端访问
 curl -XGET http://127.0.0.1:5000/v2/_catalog
 ```
+
 ### 拉取镜像
 
-```
+```bash
 ## 删除本地镜像
 docker rmi ubuntu 127.0.0.1:5000/ubuntu
 ## 拉取
@@ -104,7 +105,7 @@ docker docker 127.0.0.1:5000/ubuntu
 
 ### 修改 `docker-compose.yml`
 
-```
+```yml
 version: "3.7"
 services:
   registry:
@@ -135,18 +136,20 @@ services:
 
 ### 删除已存在容器
 
-```
+```bash
 docker rm $(docker ps -aq)
 ```
 
 ### 重新启动
-```
+
+```bash
 docker-compose up -d
 ```
 
 ### 访问
 
 浏览器访问：
-```
+
+```text
 http://127.0.0.1:8080/
 ```

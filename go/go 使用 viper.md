@@ -9,11 +9,12 @@
 > 详见 [viper](https://github.com/spf13/viper)
 
 ## 概述
+
 > `viper` 是一个配置解决方案库。
 
 ### 安装
 
-```
+```go
 go get github.com/spf13/viper
 ```
 
@@ -38,21 +39,23 @@ go get github.com/spf13/viper
 6. 默认值(`default`)
 
 ## 设置配置
+
 > 将配置信息加载到`viper`中。
 
 ### 设置显示调用
 
 #### 设置覆盖值
+
 > 设置已有的变量，会对其进行覆盖。
 
-```
+```go
 viper.Set("Verbose", true)
 viper.Set("LogFile", LogFile)
 ```
 
 #### 注册及使用别名
 
-```
+```go
 viper.RegisterAlias("loud", "Verbose")
 
 viper.Set("verbose", true)  // same result as next line
@@ -64,14 +67,14 @@ viper.GetBool("verbose")    // true
 
 ### 命令行标志
 
-```
+```go
 serverCmd.Flags().Int("port", 1138, "Port to run Application server on")
 viper.BindPFlag("port", serverCmd.Flags().Lookup("port"))
 ```
 
 ### 环境变量
 
-```
+```go
 SetEnvPrefix("spf")         // will be uppercased automatically
 BindEnv("id")
 
@@ -81,11 +84,12 @@ id := Get("id")             // 13
 ```
 
 ### 配置文件
+
 > 支持JSON，TOML，YAML，HCL和Java属性配置文件。
 
 #### 读取配置文件
 
-```
+```go
 // 配置文件名称
 viper.SetConfigName("config")
 // 配置文件后缀名（如配置文件名称无后缀，必须设置）
@@ -99,13 +103,13 @@ viper.AddConfigPath(".")
 // 读取配置文件
 err := viper.ReadInConfig()
 if err != nil {
-	panic(fmt.Errorf("Fatal error config file: %w \n", err))
+ panic(fmt.Errorf("Fatal error config file: %w \n", err))
 }
 ```
 
 #### 写入配置文件
 
-```
+```go
 // 写入当前配置（会覆盖）
 viper.WriteConfig()
 // （不会覆盖）
@@ -120,19 +124,21 @@ viper.SafeWriteConfigAs("/path/to/my/.other_config")
 ```
 
 #### 监听与重读配置文件
+
 > 支持热加载配置，应用程序运行过程中，保持监听和重新读取配置文件。
 
-```
+```go
 viper.WatchConfig()
 viper.OnConfigChange(func(e fsnotify.Event) {
-	fmt.Println("Config file changed:", e.Name)
+ fmt.Println("Config file changed:", e.Name)
 })
 ```
 
 #### 从`io.Reader`中读取配置
+
 > `io.Reader`来源可以是文件、程序中生产的字符串以及网络连接中读取的字节流。
 
-```
+```go
 viper.SetConfigType("yaml") 
 
 var yamlExample = []byte(`
@@ -157,13 +163,14 @@ viper.Get("name")
 
 ### 默认值
 
-```
+```go
 viper.SetDefault("ContentDir", "content")
 viper.SetDefault("LayoutDir", "layouts")
 viper.SetDefault("Taxonomies", map[string]string{"tag": "tags", "category": "categories"})
 ```
 
 ## 获取配置
+
 > 从`viper`中获取配置信息。
 
 - `Get(key string) : interface{}`

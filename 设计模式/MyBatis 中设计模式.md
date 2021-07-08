@@ -1,4 +1,4 @@
-# MyBatis 中设计模式 
+# MyBatis 中设计模式
 
 标签（空格分隔）： 设计模式 mybatis
 
@@ -21,12 +21,13 @@
 |迭代器模式|PropertyTokenizer实现了Iterator接口|
 
 ## 组合模式
+
 > 组合模式组合多个对象形成树形结构以表⽰“整体-部分”的结构层次。
 > 叶⼦对象和组合对象实现相同的接⼝，使叶⼦节点和对象节点能够进⾏⼀致处理。
 
 ### mybatis 动态sql实现
 
-```
+```java
 public interface SqlNode {
   boolean apply(DynamicContext context);
 }
@@ -34,7 +35,7 @@ public interface SqlNode {
 
 对于实现该接⼝的所有节点，就是整个组合模式树的各个节点：
 
-```
+```md
 SqlNode
 |-- ChooseSqlNode
 |-- ForEachSqlNode
@@ -49,12 +50,14 @@ SqlNode
 ```
 
 ## 模板模式
+
 > 是基于继承的代码复用的基本技术。
 
 ### mybatis 执行sql实现
+
 > `BaseExecutor`采用模板模式，实现大部分sql执行逻辑，然后把几个方法交给子类定制化完成。
 
-```
+```java
 protected abstract int doUpdate(MappedStatement ms, Object parameter) throws SQLException;
 
 protected abstract List<BatchResult> doFlushStatements(boolean isRollback) throws SQLException;
@@ -73,9 +76,11 @@ protected abstract <E> Cursor<E> doQueryCursor(MappedStatement ms, Object parame
 - `BatchExecutor`，执⾏update（没有select，JDBC批处理不⽀持select），将所有sql都添加到批处理中（`addBatch()`），等待统⼀执⾏（`executeBatch()`）。
 
 ## 装饰者模式
+
 > 动态地给⼀个对象增加⼀些额外的职责。
 
 ### mybatis 缓存实现
+
 > 缓存功能由接口`Cache`定义。数据存储、缓存基本功能由`PerpetualCache`实现，然后通过装饰器进行控制。
 
 `PerpetualCache` 装饰器：
@@ -97,6 +102,6 @@ protected abstract <E> Cursor<E> doQueryCursor(MappedStatement ms, Object parame
 - ⼆级缓存，⼜叫⾃定义缓存，实现了`Cache`接⼝的类都可以作为⼆级缓存。
 
 ## 迭代器模式
+
 > 提供⼀种⽅法访问⼀个容器对象中各个元素，⽽⼜不需暴露该对象的内部细节。
 > Java的`Iterator`就是迭代器模式的接⼝。只要实现了该接⼝，就相当于应⽤了迭代器模式。
-

@@ -10,11 +10,11 @@
 
 |||||||
 |---
-|break|	default|	func|	interface|	select|
-|case|	defer|	go|	map|	struct|
-|chan|	else|	goto|	package|	switch|
-|const|	fallthrough|	if|	range|	type|
-|continue|	for|	import|	return|	var|
+|break| default| func| interface| select|
+|case| defer| go| map| struct|
+|chan| else| goto| package| switch|
+|const| fallthrough| if| range| type|
+|continue| for| import| return| var|
 
 ### defer
 
@@ -44,12 +44,13 @@
 
 ### 内建常量
 
-```
+```go
 true false iota nil
 ```
-### 内建类型: 
 
-```
+### 内建类型
+
+```go
 int int8 int16 int32 int64
 uint uint8 uint16 uint32 uint64 uintptr
 float32 float64 complex128 complex64
@@ -61,9 +62,10 @@ bool byte rune string error
 - `uintptr`：无符号整数（没有指定大小，足够容纳指针）
 - `complex64`：复数（32位实数和虚数）
 - `complex128`：复数（64位实数和虚数）
+
 ### 内建函数
 
-```
+```go
 make len cap new append copy close delete
 complex real imag
 panic recover
@@ -75,7 +77,7 @@ print println
 - `new`：用于值类型、用户定义类型的内存分配，new(T)将分配T类型零值返回其指向T类型的指针
 - `make`：用于引用类型（Slice、map、chan）内存分配返回初始化的值，不同类型使用有所区别
 
-    ```
+    ```go
     make(chan int)          //创建无缓冲区的通道  
     make(chan int,10)       //创建缓冲区为10的通道  
     make([]int,1,5)         //创建长度为1，容量为5的slice  
@@ -83,25 +85,9 @@ print println
     make(map[int] int)      //创建不指定容量的map
     make(map[int] int,2)    //创建容量为2的map  
     ```
+
 - `copy`、`append`：用于复制slice与为slice追加元素
 - `print`、`println`：用于打印输出
 - `panic`、`recover`：用于错误处理
 - `delete`：用于删除map中的指定key
 - `complex`、`real`、`imag`：复数操作
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

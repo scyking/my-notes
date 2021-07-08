@@ -19,9 +19,3 @@
 - 创建模块文件等（new）：`CTRL+ALT+N`
 - 创建测试用例（test）：`CTRL+SHIFT+T`
 - 重构菜单（refactor for this）：`CTRL+T`
-
-
-
-
-
-

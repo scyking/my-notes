@@ -7,12 +7,14 @@
 [toc]
 
 ## 安装 delve
-```
+
+```bash
 go get -u github.com/derekparker/delve/cmd/dlv
 ```
 
 ## delve 命令概览
-```
+
+```bash
 Usage:
   dlv [command]
 
@@ -51,7 +53,8 @@ Flags:
 ## `dlv debug`
 
 ### 帮助信息
-```
+
+```bash
 Usage:
   dlv debug [package] [flags]
 
@@ -62,8 +65,10 @@ Flags:
 ```
 
 ### 调试代码
+
 > 命令概览
-```
+
+```bash
 The following commands are available:
 
 Running the program:
@@ -125,8 +130,7 @@ Other commands:
 ```
 
 ## 使用GoLand报版本过低
+
 1. 执行`go get -u github.com/go-delve/delve/cmd/dlv`
-1. 复制编译好的`dlv.exe`所在路径(<workspace>/bin目录中)
+1. 复制编译好的`dlv.exe`所在路径(`<workspace>/bin`目录中)
 1. 在 GoLand 中 Help -> Edit Custom Properties 添加 `dlv.path=<dlv.exe所在目录>`
-
-

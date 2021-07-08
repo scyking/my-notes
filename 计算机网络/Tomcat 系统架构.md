@@ -7,16 +7,20 @@
 [toc]
 
 ## Server
+
 > Tomcat 最顶层容器，代表整个服务器。
 > 一个`Server`至少包含一个`Service`。
 
 ## Service
+
 > 包含两部分，一个`Container`和多个`Connector`，用于提供具体服务。
 
 ## Connector
+
 > 用于处理连接相关的事情，并提供`Socket`与`Request`和`Response`相关的转化；
 
 ### 架构组成
+
 > `Connector`使用`ProtocolHandler`处理请求，不同的`ProtocolHandler`代表不同的连接类型。
 
 - `Endpoint`：用来处理底层`Socket`的网络连接。
@@ -27,23 +31,29 @@
 - `Adapter`：用于将`Request`交给`Container`进行具体的处理。
 
 ## Container
+
 > 用于封装和管理`Servlet`，以及具体处理`Request`请求。
 
 ### 四个子容器
 
 - `Engine`
+
 > 引擎，用来管理多个站点，一个`Container`最多只能有一个`Engine`。
 
 - `Host`
+
 > 站点，也可以叫虚拟主机，通过配置`Host`就可以添加站点。
 
 - `Context`
+
 > 代表一个应用程序，对应着平时开发的一套程序，或者一个`WEB-INF`目录以及下面的`web.xml`文件。
 
 - `Wrapper`
+
 > 每一Wrapper封装着一个Servlet。
 
 ### 请求处理
+
 > 使用`Pipeline-Valve`管道，采用责任链模式处理请求。
 
 1. `Container`在接收到请求后，会调用最顶层容器的`Engine`的管道（`EnginePipeline`）来处理。

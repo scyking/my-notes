@@ -25,22 +25,26 @@
     - 在E盘创建名为docker的文件夹，在其下创建名为cache的文件夹，将安装文件下的boot2docker.iso拷贝到该文件夹
 
 1. 使用[阿里云镜像提速](https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors)。
-    ```
+
+    ```bash
     docker-machine create --engine-registry-mirror=https://czx8lu07.mirror.aliyuncs.com -d virtualbox default
     ```
-    
+
 1. 安装docker-machine。（需先安装docker）
 
     安装命令：
-    ```
+
+    ```bash
     $ base=https://github.com/docker/machine/releases/download/v0.16.0 &&
       mkdir -p "$HOME/bin" &&
       curl -L $base/docker-machine-Windows-x86_64.exe > "$HOME/bin/docker-machine.exe" &&
       chmod +x "$HOME/bin/docker-machine.exe"
     ```
+
     查看是否安装成功：
-    ```
-    $ docker-machine version
+
+    ```bash
+    docker-machine version
     ```
 
 - 启动
@@ -56,36 +60,41 @@
 1. 在 `docker machine` 里将共享的文件夹 `mount` 到 `虚拟机目录`
     执行如下命令：
 
-    ```
+    ```bash
     sudo mount -t vboxsf <本地目录> <虚拟机目录>
     ```
-    
-    PS：`<本地目录>`,` <虚拟机目录>`名称不要相同
+
+    PS：`<本地目录>`,`<虚拟机目录>`名称不要相同
 
 ### 问题
 
 #### 启动虚拟机报错信息如下
 
-```
+```text
 NtCreateFile(\Device\VBoxDrvStub) failed: 0xc000000034
 STATUS_OBJECT_NAME_NOT_FOUND (0 retries) (rc=-101)
 Make sure the kernel module has been loaded successfully.
 ```
+
 原因：vboxdrv服务没有正常运行
 解决：
+
 1. 命令行下输入`sc.exe query vboxdrv`检测vboxdrv的运行状态。如果`STATE`不是`RUNNING`，则需要启动该服务。
 2. 启动命令`sc start vboxdrv`。启动失败则重装服务。
 3. 右击`C:\Program Files\Oracle\VirtualBox\drivers\vboxdrv\VBoxDrv.inf`文件，安装。
-4. 如果是`RUNNINF`状态，`sc delete newserv ` 删除服务重新安装
+4. 如果是`RUNNINF`状态，`sc delete newserv` 删除服务重新安装
 
 #### 拉取镜像报`toomanyrequest...limit...`错误
+
 解决：添加镜像提速
 
 #### 挂载本地文件夹错误
-```
+
+```text
 mounting failed with the error: Protocol error
 ```
-解决：`<本地目录>`,` <虚拟机目录>`名称不要相同
+
+解决：`<本地目录>`,`<虚拟机目录>`名称不要相同
 
 ## Linux 上使用 docker
 
@@ -93,31 +102,31 @@ mounting failed with the error: Protocol error
 
 - 查看是否已安装docker
 
-    ```
+    ```bash
     yum list installed | grep docker
     ```
-    
+
 - 卸载旧版本docker
 
-    ```
+    ```bash
     yum remove docker
     ```
-    
+
 - 配置国内源
 
-    ```
+    ```bash
     yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
     ```
-    
+
 - 安装docker
-    
-    ```
+
+    ```bash
     yum install -y docker-ce docker-ce-cli  containerd.io --nobest
     ```
 
 - 查看docker版本
 
-    ```
+    ```bash
     # 简单信息
     docker -v
     # 查看docker的版本号，包括客户端、服务端、依赖的Go等
@@ -125,10 +134,10 @@ mounting failed with the error: Protocol error
     # 查看系统(docker)层面信息，包括管理的images, containers数等
     docker info
     ```
-    
+
 - 服务相关
 
-    ```
+    ```bash
     # 启动
     systemctl start docker
     # 开机自启
@@ -145,28 +154,27 @@ mounting failed with the error: Protocol error
 
 - 更新curl
 
-    ```
+    ```bash
     yum update curl
     ```
-    
+
 - 下载
 
-    ```
+    ```bash
     curl -L https://github.com/docker/compose/releases/download/1.29.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
     ```
-    
+
 - 安装
 
-    ```
+    ```bash
     chmod +x /usr/local/bin/docker-compose
     ```
 
 - 查看版本
 
-    ```
+    ```bash
     docker-compose version
     ```
-
 
 ## dockerfile 指令
 
@@ -189,7 +197,6 @@ mounting failed with the error: Protocol error
 |ONBUILD|设置镜像的ONBUILD指令
 |STOPSIGNAL|设置容器的退出信号量
 
-
 ## 网络相关
 
 > 容器可以比拟做一个独立的系统环境,能配置自己网络,所以说容器里的localhost不一定等于宿主机的localhost。
@@ -204,7 +211,7 @@ mounting failed with the error: Protocol error
 
 ### 命令
 
-```
+```bash
 # 查看docker下网络列表
 docker network ls
 # 查看单个网络详细信息

@@ -9,14 +9,16 @@
 [toc]
 
 ## 概述
+
 > 用于重用相同配置。
 
 ## 使用示例
+
 > 定义必须以 `x-` 开头，然后以 `&` 开头的字符串为字段命名，之后就可以以 `*` 加上字段的名称进行引用。
 
 ### 扩展字段定义
 
-```
+```yml
 version: "3.9"
 x-custom:
   items:
@@ -31,7 +33,7 @@ x-custom:
 
 - 重用配置
 
-    ```
+    ```yml
     logging:
       options:
         max-size: '12m'
@@ -41,7 +43,7 @@ x-custom:
 
 - 添加后效果
 
-    ```
+    ```yml
     version: "3.9"
     x-logging:
       &default-logging
@@ -60,9 +62,10 @@ x-custom:
     ```
 
 ### 部分覆盖使用
+
 > 使用`<<`进行配置。
 
-```
+```yml
 version: "3.9"
 x-volumes:
   &default-volume

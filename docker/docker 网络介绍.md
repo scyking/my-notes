@@ -8,13 +8,16 @@
 > [docker network](https://docs.docker.com/engine/reference/commandline/network/)
 
 ## docker 网络核心
+
 > docker 网络的核心使用的是Linux的虚拟化技术，在容器内和`docker0`内分别建立一个虚拟网卡，再使用`evth-pair`技术进行连接。
 
 ### docker0
+
 > docker使用的是Linux的桥接，在宿主机中是一个docker容器的网桥docker0。
 > 每启动一个docker容器，docker就会给docker容器分配一个ip，只要安装了docker，就会有一个网卡`docker0`。
 
 ### `evth-pair`技术
+
 > docker使用的是桥接模式，使用的技术是`evth-pair`技术。
 > `evth-pair` 是一对的虚拟设备接口，它们都是成对出现的。
 > `evth-pair`充当一个桥梁，可以连接各种虚拟网络设备。一端连接着协议，一端彼此相连，因此可以彼此通信。
@@ -24,9 +27,10 @@
 ## 自定义网络
 
 ### 查看docker网络列表
+
 > 使用 `docker network ls` 命令。
 
-```
+```bash
 [root@localhost ~]# docker network ls
 NETWORK ID          NAME                DRIVER              SCOPE
 b47982b38d80        bridge              bridge              local
@@ -39,9 +43,10 @@ b47982b38d80        bridge              bridge              local
 - `host`：和宿主机共享网络
 
 ### 创建docker网络
+
 > 使用 `docker network create` 命令。
 
-```
+```bash
 [root@localhost ~]# docker network create --help
 
 Usage:  docker network create [OPTIONS] NETWORK
@@ -67,15 +72,16 @@ Options:
       --subnet strings       Subnet in CIDR format that represents a network segment
 ```
 
-```
+```bash
 ## 创建
 docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet
 ```
 
 ### 查看自定义网络
+
 > 使用 `docker network inspect` 命令。
 
-```
+```bash
 [root@localhost ~]# docker network inspect mynet
 [
     {
@@ -110,12 +116,14 @@ docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.
 ```
 
 ### 启动容器指定网络
+
 > 在启动命令`docker run`中，使用`--network`参数指定连接网络。（默认连接`bridge`网络）
 
 ### 网络连通
+
 > 使用`docker network connect`命令，将容器连接到指定网络中。
 
-```
+```bash
 [root@localhost ~]# docker network connect --help
 
 Usage:  docker network connect [OPTIONS] NETWORK CONTAINER

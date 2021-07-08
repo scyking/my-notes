@@ -1,4 +1,4 @@
-# go 使用 c/c++ 
+# go 使用 c/c++
 
 标签（空格分隔）： go
 
@@ -7,12 +7,13 @@
 [toc]
 
 ## 概述
+
 > 在 `go` 项目中使用 `c/c++`。
 
 ### 实现方式
 
 - 直接嵌套在 `go` 文件中
-- 导入动态库 `.so` 或 `dll` 
+- 导入动态库 `.so` 或 `dll`
 - 直接引用 `c/c++` 文件
 
 ### 环境支持
@@ -27,18 +28,18 @@
 - `import "C"` 这句话要紧随**注释**后，不要换行，否则报错
 - `go` 代码中调用 `c/c++` 的格式是: `C.xxx()`。例如 `C.add(2, 1)`
 
-```
+```go
 package main
 /*
 // C 标志io头文件，你也可以使用里面提供的函数
 #include <stdio.h> 
 
 void pri(){
-	printf("hey");
+ printf("hey");
 }
 
 int add(int a,int b){
-	return a+b;
+ return a+b;
 }
 */
 import "C"  // 切勿换行再写这个
@@ -46,7 +47,7 @@ import "C"  // 切勿换行再写这个
 import "fmt"
 
 func main() {
-	fmt.Println(C.add(2, 1))
+ fmt.Println(C.add(2, 1))
 }
 ```
 
@@ -59,6 +60,7 @@ func main() {
 - 操作难度比方式一麻烦不少
 
 ### 使用说明
+
 > 如果动态库不存在，将会报**找不到定义**之类的错误信息
 
 - `CFLAGS: -I路径` ：指明头文件所在路径。例如，`-Iinclude` 指明 当前项目根目录的 `include` 文件夹
@@ -68,7 +70,7 @@ func main() {
 
 1. 假设项目目录如下
 
-    ```
+    ```md
     |-project
     |  |-lib
     |  |  |-libvideo.dll
@@ -81,7 +83,7 @@ func main() {
 
 1. 头文件 `.h` 如下
 
-    ```
+    ```C
     //video.h
     #ifndef VIDEO_H
     #define VIDEO_H
@@ -92,7 +94,7 @@ func main() {
 
 1. 源文件 `.c` 如下
 
-    ```
+    ```C
     #include <stdio.h>
     #include "video.h"
     
@@ -104,16 +106,16 @@ func main() {
     ```
 
 1. 生成动态库
-> 使用 `gcc`/`g++` 生成 `.so`库，或 win 下生成 `dll`。
+    > 使用 `gcc`/`g++` 生成 `.so`库，或 win 下生成 `dll`。
 
-    ```
+    ```bash
     gcc video.c -fPIC -shared -o libvideo.so
     ```
 
 1. `main.go`
-> 将动态库放到指定目录或者当前项目里，再引用。
+    > 将动态库放到指定目录或者当前项目里，再引用。
 
-    ```
+    ```go
     package main
     
     /*
@@ -139,7 +141,7 @@ func main() {
 
 1. 假设项目目录如下
 
-    ```
+    ```go
     |-util
     |  |-util.h
     |  |-util.c
@@ -148,13 +150,13 @@ func main() {
 
 1. `util.h`
 
-    ```
+    ```go
     int sum(int a,int b);
     ```
 
 1. `util.c`
 
-    ```
+    ```go
     #include "util.h"
     int sum(int a,int b){
         return (a+b);
@@ -163,7 +165,7 @@ func main() {
 
 1. `util.go`
 
-    ```
+    ```go
     package util
     
     /*
@@ -181,7 +183,7 @@ func main() {
 
 1. `main.go`
 
-    ```
+    ```go
     package main
     
     func main(){

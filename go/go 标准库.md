@@ -16,7 +16,7 @@
 | `bufio`        |带缓存I/O操作
 | `builtin`      |预标识符文档声明
 | `bytes`        |[]byte操作常用函数
-| `compress`     |压缩包解压缩 
+| `compress`     |压缩包解压缩
 | `container`    |容器操作
 | `context`      |上下文操作
 | `crypto`       |加密算法
@@ -65,4 +65,3 @@
 ### strings
 
 ### time
-

@@ -25,7 +25,6 @@
 
 ![桥接模式](https://img-blog.csdnimg.cn/20181123230954320.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5nX3hpbnhpdQ==,size_16,color_FFFFFF,t_70)
 
-
 ## NAT（网络地址转换模式）
 
 > 使用NAT模式，就是让虚拟机借助NAT(网络地址转换)功能，通过物理机来访问网络。
@@ -38,6 +37,3 @@
 > 在一些网络环境中，由于安全，调试等原因，可能需要讲虚拟机和真实的物理环境隔离开来，那么此模式是首选。此模式下的所有虚拟机可以相互访问，但和真实的物理网络环境是隔离开的，此模式下的IP信息，是由host-only虚拟网络的DHCP服务器来分配的。
 
 ![Host-Only](https://img-blog.csdnimg.cn/20181123231409121.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5nX3hpbnhpdQ==,size_16,color_FFFFFF,t_70)
-
-
-

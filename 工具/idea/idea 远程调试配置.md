@@ -7,7 +7,8 @@
 ## 修改 maven 配置
 
 `pom.xml`文件中添加如下配置：
-```
+
+```xml
 <build>
     <plugins>
         <plugin>
@@ -39,7 +40,7 @@
 - 发布jar包`XXXXXX.jar`
 - 执行如下命令启动：
 
-```
+```bash
 java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8018,suspend=n -jar XXXXXX.jar
 ```
 
