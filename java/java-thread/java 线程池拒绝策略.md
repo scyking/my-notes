@@ -7,9 +7,11 @@
 [toc]
 
 ## 池化设计思想
+
 > 通过初始预设资源，抵消每次获取资源的消耗。如，创建线程的开销、获取远程连接的开销等等。
 
 ### 特征
+
 > 决定了池子拒绝策略触发的时机。
 
 - 池子初始值
@@ -18,6 +20,7 @@
 - 等等
 
 ### 线程池拒绝策略触发时机
+
 > 当前提交任务数⼤于（maxPoolSize + queueCapacity）时就会触发线程池的拒绝策略。
 
 - `maxPoolSize`：线程池最大值
@@ -26,9 +29,10 @@
 ## JDK内置的拒绝策略
 
 ### 拒绝策略接⼝定义
+
 > 当触发拒绝策略时，线程池会将当前提交的任务以及线程池实例本⾝传递给设置好的具体策略处理。
 
-```
+```java
 public interface RejectedExecutionHandler {
     void rejectedExecution(Runnable r, ThreadPoolExecutor executor);
 }
@@ -44,7 +48,7 @@ public interface RejectedExecutionHandler {
 
 - 代码
 
-    ```
+    ```java
     public static class CallerRunsPolicy implements RejectedExecutionHandler {
         public CallerRunsPolicy() {
         }
@@ -67,7 +71,7 @@ public interface RejectedExecutionHandler {
 
 - 代码
 
-    ```
+    ```java
     public static class AbortPolicy implements RejectedExecutionHandler {
         public AbortPolicy() {
         }
@@ -92,7 +96,7 @@ public interface RejectedExecutionHandler {
 
 - 代码
 
-```
+```java
 // 仅是一个空实现
 public static class DiscardPolicy implements RejectedExecutionHandler {
     public DiscardPolicy() {
@@ -112,7 +116,7 @@ public static class DiscardPolicy implements RejectedExecutionHandler {
 
 - 代码
 
-    ```
+    ```java
     public static class DiscardOldestPolicy implements RejectedExecutionHandler {
         public DiscardOldestPolicy() {
         }
@@ -125,7 +129,6 @@ public static class DiscardPolicy implements RejectedExecutionHandler {
     }
     ```
 
-
 ## 第三⽅实现的拒绝策略
 
 ### dubbo中的线程拒绝策略
@@ -137,32 +140,32 @@ public static class DiscardPolicy implements RejectedExecutionHandler {
 
 - 代码
 
-```
-public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy {	
-    protected static final Logger logger = LoggerFactory.getLogger(AbortPolicyWithReport.class);	
-    private final String threadName;	
-    private final URL url;	
-    private static volatile long lastPrintTime = 0;	
-    private static Semaphore guard = new Semaphore(1);	
-    public AbortPolicyWithReport(String threadName, URL url) {	
-        this.threadName = threadName;	
-        this.url = url;	
-    }	
-    @Override	
-    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) {	
+```java
+public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy { 
+    protected static final Logger logger = LoggerFactory.getLogger(AbortPolicyWithReport.class); 
+    private final String threadName; 
+    private final URL url; 
+    private static volatile long lastPrintTime = 0; 
+    private static Semaphore guard = new Semaphore(1); 
+    public AbortPolicyWithReport(String threadName, URL url) { 
+        this.threadName = threadName; 
+        this.url = url; 
+    } 
+    @Override 
+    public void rejectedExecution(Runnable r, ThreadPoolExecutor e) { 
         String msg = String.format("Thread pool is EXHAUSTED!" 
             + " Thread Name: %s, Pool Size: %d (active: %d, core: %d, max: %d, largest: %d), Task: %d (completed: %d)," 
-            + " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s), in %s://%s:%d!",	
-            threadName, e.getPoolSize(), e.getActiveCount(), e.getCorePoolSize(), e.getMaximumPoolSize(), e.getLargestPoolSize(),	
-            e.getTaskCount(), e.getCompletedTaskCount(), e.isShutdown(), e.isTerminated(), e.isTerminating(),	url.getProtocol(), url.getIp(), url.getPort());	
+            + " Executor status:(isShutdown:%s, isTerminated:%s, isTerminating:%s), in %s://%s:%d!", 
+            threadName, e.getPoolSize(), e.getActiveCount(), e.getCorePoolSize(), e.getMaximumPoolSize(), e.getLargestPoolSize(), 
+            e.getTaskCount(), e.getCompletedTaskCount(), e.isShutdown(), e.isTerminated(), e.isTerminating(), url.getProtocol(), url.getIp(), url.getPort()); 
             
-        logger.warn(msg);	
-        dumpJStack();	
-        throw new RejectedExecutionException(msg);	
-    }	
-    private void dumpJStack() {	
+        logger.warn(msg); 
+        dumpJStack(); 
+        throw new RejectedExecutionException(msg); 
+    } 
+    private void dumpJStack() { 
        // ...
-    }	
+    } 
 }
 ```
 
@@ -173,7 +176,7 @@ public class AbortPolicyWithReport extends ThreadPoolExecutor.AbortPolicy {
 
 - 代码
 
-    ```
+    ```java
     private static final class NewThreadRunsPolicy implements RejectedExecutionHandler {
         NewThreadRunsPolicy() {
             super();
