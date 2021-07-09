@@ -63,7 +63,13 @@ wget https://dl.google.com/go/go1.16.5.linux-amd64.tar.gz
 
 > Go 语言代理地址。为提高安装模块速度，使用如下代理配置。
 
-`go env -w GOPROXY="https://goproxy.io,direct"`
+```bash
+## Windows
+go env -w GOPROXY="https://goproxy.io,direct"
+
+## Linux
+"export GOPROXY="https://goproxy.io,direct"
+```
 
 ## 多文件执行
 
