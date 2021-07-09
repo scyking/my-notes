@@ -33,11 +33,11 @@
 
 |获取方式|说明|示例
 |---
-|`Object.getClass()`|获取指定实例对象的Class|`List  li  =  new ArrayList();`<br>`Class liCla  =  li.getClass();`
-|`Class.getSuperclass()`|获取当前Class的继承类Class|`List  li  =  new ArrayList();`<br>`Class liCla  =  li.getClass();`<br>`Class suCla =  liCla.getSuperclass();`
+|`Object.getClass()`|获取指定实例对象的Class|`List  li  =  new ArrayList();`</br>`Class liCla  =  li.getClass();`
+|`Class.getSuperclass()`|获取当前Class的继承类Class|`List  li  =  new ArrayList();`</br>`Class liCla  =  li.getClass();`</br>`Class suCla =  liCla.getSuperclass();`
 |`Object.class`|.class直接获取|`Class liCla = ArrayList.class;`
 |`Class.forName("类名")`|用class的静态方法，传入类的全称即可|`Class cla = Class.forName("java.util.ArrayList");`
-|`Primitive.TYPE`|基本数据类型的封装类获取Class的方式|`Class longClass = Long.TYPE;`<br> `Class inteClass = Integer.TYPE;`
+|`Primitive.TYPE`|基本数据类型的封装类获取Class的方式|`Class longClass = Long.TYPE;`</br> `Class inteClass = Integer.TYPE;`
 
 ## 代理模式
 
