@@ -68,7 +68,7 @@ wget https://dl.google.com/go/go1.16.5.linux-amd64.tar.gz
 go env -w GOPROXY="https://goproxy.io,direct"
 
 ## Linux
-"export GOPROXY="https://goproxy.io,direct"
+export GOPROXY="https://goproxy.io,direct"
 ```
 
 ## 多文件执行
