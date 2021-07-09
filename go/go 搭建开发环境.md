@@ -1,5 +1,7 @@
 # go 搭建开发环境
 
+---
+
 [toc]
 
 > [Download and install](https://golang.google.cn/doc/install)
@@ -49,7 +51,7 @@ wget https://dl.google.com/go/go1.16.5.linux-amd64.tar.gz
 - `off`
     > 不使用新特性 `Go Modules` 支持，它会查找 `vendor` 目录和 `$GOPATH` 来查找依赖关系，也就是继续使用`GOPATH`模式。
 - `auto`或未设置
-    > 则根据当前项目目录下是否存在 `go.mod` 文件或 `$GOPATH/src` 之外并且其本身包含 `go.mod` 文件时才会使用新特性 `Go Modules` 模式。
+    > 根据当前项目目录下是否存在 `go.mod` 文件，决定是否使用新特性 `Go Modules` 模式。
 
 ### `GOPATH`
 
