@@ -9,7 +9,6 @@
 ## 概述
 
 > Linux是一种安全操作系统，它给普通用户尽可能低的权限，而把全部的系统权限赋予一个单一的帐户（`root`）。
-
 > 从2.1版开始，内核开发人员在Linux内核中加入了能力（`capability`）的概念。其目标是消除需要执行某些操作的程序对root帐户的依赖。
 
 ## 权限说明
@@ -62,7 +61,7 @@
 
 ## 使用举例
 
-```
+```bash
 usage: setcap [-q] [-v] (-r|-|<caps>) <filename> [ ... (-r|-|<capsN>) <filenameN> ]
 
  Note <filename> must be a regular (non-symlink) file.
@@ -70,12 +69,12 @@ usage: setcap [-q] [-v] (-r|-|<caps>) <filename> [ ... (-r|-|<capsN>) <filenameN
 
 ### 允许绑定1024以内端口
 
-```
+```bash
 setcap cap_net_bind_service=+eip /home/nginx/sbin/nginx
 ```
 
 ### 清除附加权限
 
-```
+```bash
 setcap -r nginx
 ```
