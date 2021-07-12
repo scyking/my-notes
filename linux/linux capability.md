@@ -59,7 +59,11 @@
 - `cap_allowed`：`fI`，表示程序运行时可从原进程的`cap_inheritable`中集成的能力集。
 - `cap_forced`：`fP`，表示运行文件时必须拥有才能完成其服务的能力集。
 
-## 使用举例
+## 配置权限
+
+### `setcap` 命令
+
+> 用于设置权限。
 
 ```bash
 usage: setcap [-q] [-v] (-r|-|<caps>) <filename> [ ... (-r|-|<capsN>) <filenameN> ]
@@ -67,14 +71,24 @@ usage: setcap [-q] [-v] (-r|-|<caps>) <filename> [ ... (-r|-|<capsN>) <filenameN
  Note <filename> must be a regular (non-symlink) file.
 ```
 
-### 允许绑定1024以内端口
+- 允许绑定1024以内端口
+
+    ```bash
+    setcap cap_net_bind_service=+eip /home/nginx/sbin/nginx
+    ```
+
+- 清除附加权限
+
+    ```bash
+    setcap -r nginx
+    ```
+
+### `getcap` 命令
+
+> 用于查询权限。
 
 ```bash
-setcap cap_net_bind_service=+eip /home/nginx/sbin/nginx
-```
+usage: getcap [-v] [-r] [-h] <filename> [<filename> ...]
 
-### 清除附加权限
-
-```bash
-setcap -r nginx
+        displays the capabilities on the queried file(s).
 ```
