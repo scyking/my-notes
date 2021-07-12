@@ -1,4 +1,4 @@
-# linux setcap命令
+# linux capability
 
 标签（空格分隔）： linux
 

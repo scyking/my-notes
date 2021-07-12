@@ -53,7 +53,7 @@
 
 > 用命令`uname -a`查看内核版本号。
 
-```
+```bash
 Linux localhost.localdomain 3.10.0-1160.31.1.el7.x86_64 #1 SMP Thu Jun 10 13:32:12 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
 ```
 
@@ -78,13 +78,13 @@ Linux localhost.localdomain 3.10.0-1160.31.1.el7.x86_64 #1 SMP Thu Jun 10 13:32:
 
 ### `cat /proc/version`
 
-```
+```bash
 Linux version 3.10.0-1160.31.1.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Thu Jun 10 13:32:12 UTC 2021
 ```
 
 ### `uname`
 
-```
+```bash
 用法：uname [选项]...
 输出一组系统信息。如果不跟随选项，则视为只附加-s 选项。
 
