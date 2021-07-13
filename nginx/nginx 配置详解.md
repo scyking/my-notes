@@ -1,4 +1,4 @@
-# nginx 配置
+# nginx 配置详解
 
 标签（空格分隔）： nginx
 
@@ -6,9 +6,78 @@
 
 [toc]
 
-## 参数说明
+## nginx 常用功能
 
+### Http代理
+
+- 正向代理
+![正向代理](../md/nginx/代理.jpg)
+
+- 反向代理
+![反向代理](../md/nginx/反向代理.jpg)
+
+### 负载均衡
+
+> nginx 内置负载均衡策略有轮询，加权轮询，Ip hash。
+
+- 轮询
+![轮询](../md/nginx/轮询.jpg)
+
+- 加权轮询
+![加权轮询](../md/nginx/加权轮询.jpg)
+
+- IP Hash
+![IP Hash](../md/nginx/ip%20hash.jpg)
+
+### web 缓存
+
+> `Nginx` 可以对不同的文件做不同的缓存处理，配置灵活，并且支持`FastCGI_Cache`，主要用于对 `FastCGI` 的动态程序进行缓存。配合着第三方的 `ngx_cache_purge`，对制定的 `URL` 缓存内容可以的进行增删管理。
+
+## 配置文件
+
+### 文件结构
+
+```cfg
+# 全局块
+...                             
+
+# events块
+events {                        
+   ...
+}
+
+# http块
+http {
+    # server块
+    server { 
+        # location块
+        location [PATTERN]{
+            ...
+        }
+    }
+}
 ```
+
+- **全局块**：配置影响nginx全局的指令。
+- **events块**：配置影响nginx服务器或与用户的网络连接。
+- **http块**：可以嵌套多个server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。
+- **server块**：配置虚拟主机的相关参数，一个`http`中可以有多个`server`。
+- **location块**：配置请求的路由，以及各种页面的处理情况。
+
+### 常见配置项
+
+- `$remote_addr` 与 `$http_x_forwarded_for`：用以记录客户端的ip地址；
+- `$remote_user` ：用来记录客户端用户名称；
+- `$time_local` ： 用来记录访问时间与时区；
+- `$request` ： 用来记录请求的url与http协议；
+- `$status` ： 用来记录请求状态；成功是200；
+- `$body_bytes_s ent` ：记录发送给客户端文件主体内容大小；
+- `$http_referer` ：用来记录从那个页面链接访问过来的；
+- `$http_user_agent` ：记录客户端浏览器的相关信息；
+
+### 配置示例
+
+```cfg
 #定义Nginx运行的用户和用户组
 user www www;
 #
