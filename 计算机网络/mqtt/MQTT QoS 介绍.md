@@ -14,11 +14,11 @@
 
 ## QoS0
 
-![QoS0](../md/mqtt/QoS0.png)
+![QoS0](../../md/mqtt/QoS0.png)
 
 ## QoS1
 
-![QoS1](../md/mqtt/QoS1.png)
+![QoS1](../../md/mqtt/QoS1.png)
 
 - 如果 `publish` 下发出现问题，将没有 `puback` 回复，服务器将找机会重新下发该 `msgid` 的消息。
 - 如果 `ack` 回复出现问题，服务器认为没有收到确认，仍然重新找机会重新下发该 `msgid` 的消息。
@@ -26,7 +26,7 @@
 
 ## QoS2
 
-![QoS2](../md/mqtt/QoS2.png)
+![QoS2](../../md/mqtt/QoS2.png)
 
 - `publish` 下发失败了，服务器重发 `publish`。
 - `pubrec` 上报失败了，服务器重发 `publish`。这个时候，客户端仍然是重复收到多次 `publish`。
