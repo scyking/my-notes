@@ -87,7 +87,9 @@
 
 > 消息质量（QoS，Quality of Service），有`QoS 0`、`QoS 1`、`QoS 2`三个等级。
 
-## 最后遗嘱
+## [最后遗嘱](MQTT%20最后遗嘱.md)
+
+> 最后遗嘱（LWT，Last Will and Testament）。
 
 ## 应用场景
 
