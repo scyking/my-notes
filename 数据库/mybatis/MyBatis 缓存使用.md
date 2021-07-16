@@ -1,4 +1,4 @@
-# MyBatis 缓存
+# MyBatis 缓存使用
 
 ---
 
@@ -205,15 +205,15 @@ public class PerpetualCache implements Cache {
 > 使用一级缓存的时候，因为缓存不能跨会话共享，不同的会话之间对于相同的数据可能有不一样的缓存。
 > 在有多个会话或者分布式环境下，会存在脏数据的问题。如果要解决这个问题，就要用到二级缓存。
 
-## 二级缓存
-
-> 存在于 `SqlSessionFactory` 生命周期中，是 `Application` 级别的缓存，可以提高对数据库查询的效率，以提高应用的性能。
-> `SqlSessionFactory` 层面上的二级缓存默认是不开启的。实现二级缓存时，MyBatis要求返回的POJO必须是**可序列化**的。
-
 一级缓存无法关闭，但可配置级别：
 
 - `session` 级别的缓存。在同一个 `sqlSession` 内，对同样的查询将不再查询数据库，直接从缓存中。
 - `statement` 级别的缓存。为了避免上面问题，可以将一级缓存的级别设为 `statement` 级别，这样每次查询结束都会清掉一级缓存。
+
+## 二级缓存
+
+> 存在于 `SqlSessionFactory` 生命周期中，是 `Application` 级别的缓存，可以提高对数据库查询的效率，以提高应用的性能。
+> `SqlSessionFactory` 层面上的二级缓存默认是不开启的。实现二级缓存时，MyBatis要求返回的POJO必须是**可序列化**的。
 
 ![二级缓存示意图](../../md/mybatis/二级缓存示意.png)
 
