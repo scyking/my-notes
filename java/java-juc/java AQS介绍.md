@@ -11,6 +11,8 @@
 
 ## 框架
 
+> `J.U.C` 包是在AQS的基础上搭建起来的，AQS提供了一种实现阻塞锁和一系列依赖FIFO等待队列的同步器的框架。
+
 ![AQS](../../md/java-juc/AQS.png)
 
 ### 核心思想
@@ -41,13 +43,13 @@
 ### 节点状态
 
 > Node 节点是对每一个等待获取资源的线程的封装，其包含了需要同步的线程本身及其等待状态。如是否被阻塞、是否等待唤醒、是否已经被取消等。
-> AQS 中变量 `waitStatus` 则表示当前Node节点的等待状态。（负值表示结点处于有效等待状态，而正值表示结点已被取消。）
+> AQS 中变量 `waitStatus` 则表示当前Node节点的等待状态。（负值表示节点处于有效等待状态，而正值表示节点已被取消。）
 
-- `0`：新结点入队时的默认状态。
-- `CANCELLED`(`1`)：表示当前结点已取消调度。当timeout或被中断（响应中断的情况下），会触发变更为此状态，进入该状态后的结点将不会再变化。
-- `SIGNAL`(`-1`)：表示后继结点在等待当前结点唤醒。后继结点入队时，会将前继结点的状态更新为SIGNAL。
-- `CONDITION`(`-2`)：表示结点等待在Condition上，当其他线程调用了Condition的signal()方法后，CONDITION状态的结点将从等待队列转移到同步队列中，等待获取同步锁。
-- `PROPAGATE`(`-3`)：共享模式下，前继结点不仅会唤醒其后继结点，同时也可能会唤醒后继的后继结点。
+- `0`：新节点入队时的默认状态。
+- `CANCELLED`(`1`)：表示当前节点已取消调度。当timeout或被中断（响应中断的情况下），会触发变更为此状态，进入该状态后的节点将不会再变化。
+- `SIGNAL`(`-1`)：表示后继节点在等待当前节点唤醒。后继节点入队时，会将前继节点的状态更新为SIGNAL。
+- `CONDITION`(`-2`)：表示节点等待在Condition上，当其他线程调用了Condition的signal()方法后，CONDITION状态的节点将从等待队列转移到同步队列中，等待获取同步锁。
+- `PROPAGATE`(`-3`)：共享模式下，前继节点不仅会唤醒其后继节点，同时也可能会唤醒后继的后继节点。
 
 ### 获取资源方法 `acquire(int)`
 
@@ -76,7 +78,7 @@ public final void acquire(int arg) {
 ```java
 public final boolean release(int arg) {
     if (tryRelease(arg)) {
-        Node h = head;//找到头结点
+        Node h = head;//找到头节点
         if (h != null && h.waitStatus != 0)
             unparkSuccessor(h);//唤醒等待队列里的下一个线程
         return true;
@@ -105,7 +107,7 @@ public final void acquireShared(int arg) {
 ```java
 public final boolean releaseShared(int arg) {
     if (tryReleaseShared(arg)) {//尝试释放资源
-        doReleaseShared();//唤醒后继结点
+        doReleaseShared();//唤醒后继节点
         return true;
     }
     return false;
