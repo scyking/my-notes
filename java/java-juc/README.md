@@ -10,7 +10,7 @@
 
 ## 并发基础
 
-### [AQS](java%20AQS介绍.md)
+### [AQS](java%20AQS.md)
 
 ## 内存模型
 
