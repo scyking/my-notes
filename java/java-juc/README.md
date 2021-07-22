@@ -14,7 +14,17 @@
 
 ### [CAS](java%20CAS.md)
 
-## 内存模型
+## JMM
+
+### [线程通信机制](../java-thread/java%20线程通信机制.md)
+
+### 内存模型
+
+### `synchronized`
+
+### `volatile`
+
+### `DCL`
 
 ## 锁
 
